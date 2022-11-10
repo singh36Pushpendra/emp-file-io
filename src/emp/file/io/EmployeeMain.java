@@ -60,8 +60,13 @@ public class EmployeeMain {
             Files.write(path, empsList, StandardOpenOption.APPEND);
             System.out.println(employees.size() + " Employee information saved successfully to file!\n" + path);
 
-            long count = Files.lines(path).count();
+            List<String> emps = Files.readAllLines(path);
+            System.out.println("\nPrinting all employee details from file:");
+            emps.stream().forEach(emp -> System.out.println(emp));
+
+            long count = emps.stream().count();
             System.out.println("Number of employee entries in file = " + count);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
